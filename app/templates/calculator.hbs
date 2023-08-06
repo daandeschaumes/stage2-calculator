@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <h1>Calculator</h1>
+
+  <ul class="bg-light">
+    {{#each this.itemList as |item|}}
+      <div class="d-flex justify-content-between">
+        <li>{{item}}
+        </li>
+        <button class="btn bi bi-x-lg" type="button" {{on "click" (fn this.deleteItem item)}}>
+
+        </button>
+
+      </div>
+
+      {{!  }}
+
+    {{/each}}
+  </ul>
+  {{#if this.isGreaterThan100}}
+    <h1>Heads up!</h1>
+    {{!-- Content to render when this.subtotal > 100 --}}
+  {{/if}}
+  <section class="w-50 ml-auto text-right">
+    <div class="row">
+      <span
+        class="col {{if this.isEvenAndNotZero 'font-weight-bold bg-success'}}"
+      >{{this.subtotal}}</span>
+    </div>
+  </section>
+  <ul>
+
+  </ul>
+  <div class="d-flex align-items-center">
+    <input
+      type="number"
+      class="ml-auto"
+      value={{this.currentNumber}}
+      {{on "input" this.registerNumber}}
+    />
+  </div>
+  <br />
+
+  <br />
+  <div class="d-flex justify-content-between">
+    <button type="button" class="btn btn-info" {{on "click" this.reset}}>
+      Reset
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      {{on "click" this.addNumbers}}
+    >
+      Add
+    </button>
+
+  </div>
+
+</div>
